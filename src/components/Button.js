@@ -4,20 +4,18 @@ class Button extends Component {
 
   state={start: this.props.isWorking}
 
-  stateReturn = (event) => {
-    this.setState({ hex: event.target.value})
-  }
-
   componentDidUpdate() {
     console.log(this.state.start);
   }
 
   render() {
     const {start} = this.state
-
+    let display = 'Start';
+    if (start) display = 'Stop';
+    
     return (
-    <input type='button' value={start} onClick={(event)=>this.props.onClickButton}/>
-      )
+    <input type='button' value={display} onClick={this.props.onClickButton()}/>
+    )
   }
 }
 
