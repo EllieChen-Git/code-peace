@@ -72,10 +72,21 @@ class App extends Component {
     return (
       <>
         <h1>Code Peace</h1>
-        <h2>{JSON.stringify(this.state.recordings)}</h2>
-        <Output isWorking={this.isWorking} />
-        <Clock recordings={recordings} />
-        <Button isWorking={this.isWorking} onClickButton={this.onClickButton} />
+        <h2>Records: {JSON.stringify(this.state.recordings)}</h2>
+        <div>
+          <Output isWorking={this.isWorking} />
+        </div>
+        <div>
+          {" "}
+          <Clock isWorking={this.isWorking} recordings={recordings} />
+        </div>
+        <div>
+          {" "}
+          <Button
+            isWorking={this.isWorking}
+            onClickButton={this.onClickButton}
+          />
+        </div>
       </>
     );
   }

@@ -8,7 +8,7 @@ class Clock extends Component {
   componentDidMount() {
     const { isWorking, recordings } = this.props;
 
-    if (isWorking) {
+    if (isWorking()) {
       const starTime = recordings[recordings.length - 1].start_time;
       const currTime = Math.round(new Date().getTime() / 1000);
 
@@ -35,7 +35,7 @@ class Clock extends Component {
   render() {
     const { isWorking } = this.props;
 
-    return <>{isWorking && this.getTimerFormat()}</>;
+    return <>{isWorking() && this.getTimerFormat()}</>;
   }
 }
 
