@@ -87,7 +87,7 @@ class App extends Component {
           <h1>Code Peace</h1>
           <h2>{JSON.stringify(this.state.recordings)}</h2>
           <Output isWorking={ this.isWorking } />
-          <Clock recordings={ recordings } />
+          <Clock isWorking={ this.isWorking } recordings={ recordings } />
           <Button isWorking={ this.isWorking } onClickButton={ this.onClickButton } />
         </>
       );
