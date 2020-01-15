@@ -6,17 +6,16 @@ import Button from "./components/Button";
 class App extends Component {
 
   state = {
-    recordings: [],
-    isWorking: false
+    recordings: []
   }
 
   componentDidMount(){
 
-    console.log("App component DID MOUNT");
+    // console.log("App component DID MOUNT");
 
     let rawRecordings = localStorage.getItem("RECORDINGS");
 
-    console.log(`Storage has: ${rawRecordings}`);
+    // console.log(`Storage has: ${rawRecordings}`);
     
     if (!rawRecordings){
       rawRecordings = [];
@@ -27,10 +26,14 @@ class App extends Component {
 
   }
 
-  isWorking(){
+  isWorking = () => {
 
-    const lastRecording = this.recordings[ this.recordings.length - 1 ];
+    console.log(`Length: ${this.state.recordings.length}`);
+
+    const lastRecording = this.state.recordings.length ? this.state.recordings[ this.state.recordings.length - 1 ] : {};
     
+    console.log(`lastRecording: ${JSON.stringify(lastRecording)}`);
+
     if (lastRecording.stop_time){
       return false;
     } else {
@@ -39,9 +42,9 @@ class App extends Component {
 
   }
 
-  onClickButton(){
+  onClickButton = () => {
     
-    const recordings = this.recordings;
+    const recordings = this.state.recordings;
 
     const currTime = new Date();
     const recording = Math.round(currTime.getTime() / 1000);
@@ -49,7 +52,7 @@ class App extends Component {
     let lastRecording;
     let newRecordingsState;
 
-    if (this.isWorking){
+    if (!this.isWorking()){
 
       lastRecording = recordings[ recordings.length - 1 ]
       lastRecording.stop_time = recording;
@@ -61,9 +64,10 @@ class App extends Component {
       lastRecording = { start_time: recording }
       newRecordingsState = [ ...recordings ]
       newRecordingsState.push( lastRecording )
+
     }
 
-    localStorage.setItem("RECORDINGS", newRecordingsState);
+    localStorage.setItem("RECORDINGS", JSON.stringify(newRecordingsState));
     this.setState({recordings: newRecordingsState});
   }
 
