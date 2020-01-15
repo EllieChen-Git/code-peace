@@ -77,11 +77,9 @@ class App extends Component {
           <Output isWorking={this.isWorking} />
         </div>
         <div>
-          {" "}
           <Clock isWorking={this.isWorking} recordings={recordings} />
         </div>
         <div>
-          {" "}
           <Button
             isWorking={this.isWorking}
             onClickButton={this.onClickButton}
