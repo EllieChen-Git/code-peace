@@ -34,10 +34,16 @@ class App extends Component {
     
     console.log(`lastRecording: ${JSON.stringify(lastRecording)}`);
 
-    if (lastRecording.stop_time){
+    if (lastRecording.stop_time || (this.state.recordings.length === 0) ){
+
+      console.log("Returning FALSE");
       return false;
+
     } else {
+
+      console.log("Returning TRUE");
       return true;
+      
     }
 
   }
@@ -52,7 +58,7 @@ class App extends Component {
     let lastRecording;
     let newRecordingsState;
 
-    if (!this.isWorking()){
+    if (this.isWorking()){
 
       lastRecording = recordings[ recordings.length - 1 ]
       lastRecording.stop_time = recording;
@@ -61,6 +67,7 @@ class App extends Component {
       newRecordingsState.push( lastRecording )
 
     } else {
+
       lastRecording = { start_time: recording }
       newRecordingsState = [ ...recordings ]
       newRecordingsState.push( lastRecording )
