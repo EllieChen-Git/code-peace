@@ -2,10 +2,22 @@ import React, { Component } from "react";
 
 class Button extends Component {
 
-  isWorking = false;
+  state={start: this.props.isWorking}
+
+  stateReturn = (event) => {
+    this.setState({ hex: event.target.value})
+  }
+
+  componentDidUpdate() {
+    console.log(this.state.start);
+  }
 
   render() {
-    return "Button";
+    const {start} = this.state
+
+    return (
+    <input type='button' value={start} onClick={(event)=>this.props.onClickButton}/>
+      )
   }
 }
 
